@@ -4,11 +4,11 @@ module.exports = {
     parser: "babel-eslint",
     sourceType: "module",
     ecmaFeatures: {
-      jsx: true,
-    },
+      jsx: true
+    }
   },
   env: {
-    node: true,
+    node: true
   },
   extends: ["plugin:vue/essential", "eslint:recommended", "@vue/prettier"],
   rules: {
@@ -16,5 +16,9 @@ module.exports = {
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
     eqeqeq: ["off"],
     "no-new": ["off"],
-  },
+    "no-unused-vars": [
+      "warn",
+      { vars: "all", args: "after-used", ignoreRestSiblings: false }
+    ]
+  }
 };

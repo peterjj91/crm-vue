@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>История записей</h3>
+      <h3>Record History</h3>
     </div>
 
     <div class="history-chart">
@@ -13,11 +13,11 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Сумма</th>
-            <th>Дата</th>
-            <th>Категория</th>
-            <th>Тип</th>
-            <th>Открыть</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Type</th>
+            <th>Open</th>
           </tr>
         </thead>
 
@@ -28,7 +28,7 @@
             <td>12.12.32</td>
             <td>name</td>
             <td>
-              <span class="white-text badge red">Расход</span>
+              <span class="white-text badge red">Consumption</span>
             </td>
             <td>
               <button class="btn-small btn">
