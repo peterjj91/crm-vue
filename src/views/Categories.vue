@@ -4,32 +4,54 @@
       <h3>Categories</h3>
     </div>
     <section>
-      <div class="row">
+      <Loader v-if="loading" />
+
+      <div v-else class="row">
         <CategoryCreate @created="addNewCategory" />
-        <CategoryEdit />
+        <CategoryEdit
+          v-if="categories.length"
+          :categories="categories"
+          :key="categories.length + updateCount"
+          @update="updateCategories"
+        />
+
+        <div v-else>
+          <h4 class="center">Please create category</h4>
+        </div>
       </div>
     </section>
   </div>
 </template>
 
 <script>
-import CategoryCreate from "@/components/CategoryCreate";
-import CategoryEdit from "@/components/CategoryEdit";
+import CategoryCreate from "@/components/CategoryCreate"
+import CategoryEdit from "@/components/CategoryEdit"
 
 export default {
   name: "categories",
   data: () => ({
-    categories: []
+    categories: [],
+    loading: true,
+    updateCount: 0
   }),
   methods: {
     addNewCategory(category) {
-      console.log(this.categories);
-      this.categories.push(category);
+      this.categories.push(category)
+    },
+    updateCategories(category) {
+      const idx = this.categories.findIndex(c => c.id === category.id)
+      this.categories[idx].title = category.title
+      this.categories[idx].limit = category.limit
+      this.updateCount++
     }
+  },
+  async mounted() {
+    this.categories = await this.$store.dispatch("fetchCategories")
+    this.loading = false
   },
   components: {
     CategoryCreate,
     CategoryEdit
   }
-};
+}
 </script>

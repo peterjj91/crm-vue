@@ -33,9 +33,8 @@
           <span
             class="helper-text invalid"
             v-if="$v.title.$dirty && !$v.limit.minValue"
+            >Minimum value is {{ $v.limit.$params.minValue.min }}</span
           >
-            Minimum value is {{ $v.limit.$params.minValue.min }}
-          </span>
         </div>
 
         <button class="btn waves-effect waves-light" type="submit">
@@ -48,8 +47,8 @@
 </template>
 
 <script>
-import { required, minValue } from "vuelidate/lib/validators";
-import M from "materialize-css/dist/js/materialize.min";
+import { required, minValue } from "vuelidate/lib/validators"
+import M from "materialize-css/dist/js/materialize.min"
 
 export default {
   data: () => ({
@@ -61,29 +60,29 @@ export default {
     limit: { minValue: minValue(100) }
   },
   mounted() {
-    M.updateTextFields();
+    M.updateTextFields()
   },
   methods: {
     async submitHandler() {
       if (this.$v.$invalid) {
-        this.$v.$touch();
-        return;
+        this.$v.$touch()
+        return
       }
 
       try {
         const category = await this.$store.dispatch("createCategory", {
           title: this.title,
           limit: this.limit
-        });
-        this.title = "";
-        this.limit = 100;
-        this.$v.$reset();
-        this.$message("Category was created");
-        this.$emit("created", category);
+        })
+        this.title = ""
+        this.limit = 100
+        this.$v.$reset()
+        this.$message("Category was created")
+        this.$emit("created", category)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
     }
   }
-};
+}
 </script>

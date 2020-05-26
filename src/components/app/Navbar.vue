@@ -64,9 +64,7 @@ export default {
   },
   beforeDestroy() {
     clearInterval(this.interval);
-    if (this.dropdown && this.dropdown.destroy) {
-      this.dropdown.destroy();
-    }
+    this.dropdown?.destroy?.();
   }
 };
 </script>
